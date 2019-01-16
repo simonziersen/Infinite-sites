@@ -6,6 +6,7 @@ source("IS-functions.R")
 # hej[2, 1:4] <- c(0,0,0,0)
 # genRoots(hej)
 
+
 ### Example data ###
 data <- data_frame(s1 = c(0, 0, 0, 1, 1, 0, 0, 0),
                    s2 = c(0, 0, 0, 0, 0, 1, 0, 0),
