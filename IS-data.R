@@ -1,4 +1,3 @@
-setwd("C:/Users/tmg225/Documents/Infinite-sites")
 source("IS-functions.R")
 
 
@@ -6,17 +5,16 @@ source("IS-functions.R")
 # hej[2, 1:4] <- c(0,0,0,0)
 # genRoots(hej)
 
-
 ### Example data ###
-data <- data_frame(s1 = c(0, 0, 0, 1, 1, 0, 0, 0),
+data <- tibble(s1 = c(0, 0, 0, 1, 1, 0, 0, 0),
                    s2 = c(0, 0, 0, 0, 0, 1, 0, 0),
                    s3 = c(1, 0, 0, 0, 0, 0, 0, 0),
                    s4 = c(0, 0, 0, 1, 0, 0, 0, 0),
                    s5 = c(0, 0, 0, 0, 0, 0, 1, 1),
                    s6 = c(0, 0, 0, 0, 0, 0, 0, 1),
                    s7 = c(1, 1, 0, 0, 0, 0, 1, 1),
-                   n = c(3, 4, 4, 11, 1, 2, 2, 3))
-data <- data[, c(7,3,1,4,2,5,6,8)]
+                   n = c(3, 4, 4, 1, 1, 2, 2, 3))
+#data <- data[, c(7,3,1,4,2,5,6,8)]
 exList <- genRoots(data)
 
 
@@ -43,6 +41,15 @@ ward <- data_frame(s1 = c(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ward <- ward[, c(4, 6, 14, 1, 10, 18, 2, 3, 9, 5, 11, 12, 13, 16, 17, 8, 7, 15, 19)]
 wardList <- genRoots(ward)
 
-wardList <- lapply(wardList, function(x) x[- which(rowSums(x[, -19]) == 0), ])
+#wardList <- lapply(wardList, function(x) x[- which(rowSums(x[, -19]) == 0), ])
 
 
+#### test ####
+object <- RT(exList[[1]])
+object <- RT(wardList[[1]])
+t0 <- Sys.time()
+sims <- NULL
+for(i in 1:10){
+  sims[[i]] <- sim(object)
+}
+t1 <- Sys.time() - t0
